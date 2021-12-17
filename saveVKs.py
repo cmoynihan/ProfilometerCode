@@ -18,7 +18,7 @@ for i, file in enumerate(info['file'].array):
     if i == 0:
         pag.click(location['File'])
     pag.click(location['Export'])
-    pag.click(location['Output'])
+    pag.click((location['Output'][0], location['Output'][1]+30))
     pag.click(location['Type'])
     pag.click(location['Ok'])
     pag.write(file)

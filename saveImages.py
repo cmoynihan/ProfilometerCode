@@ -5,11 +5,12 @@ from locations import *
 
 location = locations[tuple(pag.size())]
 
-info = pd.read_csv('Info.csv')
-info = info[1:]
-info.reset_index(inplace=True, drop=True)
-for i in range(len(info)):
-    fname = f"{info.loc[i, 'Comment']}-{info.loc[i, 'Lens magnification']:.0f}X-Image"
+info = pd.read_csv('../temp.csv', usecols=[5], skiprows=2, names=['file'])
+
+# info = info[1:]
+# info.reset_index(inplace=True, drop=True)
+for i, file in enumerate(info['file'].array):
+    # fname = f"{info.loc[i, 'Comment']}-{info.loc[i, 'Lens magnification']:.0f}X-Image"
     if i == 0:
         pag.click(location['File'])
     if i == 0:
@@ -21,7 +22,7 @@ for i in range(len(info)):
     else:
         pag.click(location['else'], clicks=2)
     pag.click(location['Save...'])
-    pag.write(fname)
+    pag.write(file)
     pag.press('enter')
     pag.press('tab')
     pag.press('enter')
